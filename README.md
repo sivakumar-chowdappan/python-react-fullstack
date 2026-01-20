@@ -1,6 +1,5 @@
 ﻿# python-react-fullstack
  
-
 git clone https://github.com/sivakumar-chowdappan/python-react-fullstack.git
 
 cd Server-Python
@@ -9,11 +8,14 @@ pip install -r requirements.txt
 
 # To Run Python Server
 
- "C:/Program Files/Python314/python.exe" -m uvicorn main:app --reload --port 8000
-or
+"C:/Program Files/Python314/python.exe" -m uvicorn main:app --reload --port 8000
+
+  or
+
 python  -m uvicorn main:app --reload --port 8000
 
 # GET 
+
 curl.exe http://localhost:8000/tasks -H "x-api-key: dev-secret-key"
 
 curl.exe http://localhost:8000/tasks -H "x-api-key: dev-secret-key" | jq
@@ -22,7 +24,8 @@ curl.exe http://localhost:8000/tasks/7 -H "x-api-key: dev-secret-key"
 
 curl.exe http://localhost:8000/tasks/7 -H "x-api-key: dev-secret-key" | jq
 
-# Post
+# POST
+
 $body = @{
   title       = "Mongo DB"
   description = "FastAPI demo"
@@ -36,9 +39,6 @@ Invoke-RestMethod -Method POST `
   -Body $body
 
 # PATCH
-
-PATCH
--------------
 
 $body = @{
   title       = "Migrate Data"
