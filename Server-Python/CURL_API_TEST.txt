@@ -1,0 +1,42 @@
+GET
+------
+
+curl.exe http://localhost:8000/tasks -H "x-api-key: your-strong-secret" | jq
+curl.exe http://localhost:8000/tasks/2 -H "x-api-key: your-strong-secret" | jq
+
+POST
+------
+
+
+$body = @{
+  title       = "Mongo DB"
+  description = "FastAPI demo"
+  completed   = $false
+} | ConvertTo-Json
+
+Invoke-RestMethod -Method POST `
+  -Uri "http://localhost:8000/tasks" `
+  -Headers @{ "x-api-key" = "your-strong-secret" } `
+  -ContentType "application/json" `
+  -Body $body
+
+
+PATCH
+-------------
+
+$body = @{
+  title       = "Migrate Data"
+  description = "FastAPI Python"
+  completed   = $true
+} | ConvertTo-Json
+
+Invoke-RestMethod -Method PATCH `
+  -Uri "http://localhost:8000/tasks/7" `
+  -Headers @{ "x-api-key" = "your-strong-secret" } `
+  -ContentType "application/json" `
+  -Body $body
+
+DELETE
+-------
+
+curl.exe -X DELETE http://localhost:8000/tasks/1 -H "x-api-key: your-strong-secret"
