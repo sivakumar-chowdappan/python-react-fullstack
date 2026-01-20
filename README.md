@@ -12,6 +12,7 @@ cd Server-Python
 
 python  -m uvicorn main:app --reload --port 8000
 
+# GET 
 curl.exe http://localhost:8000/tasks -H "x-api-key: dev-secret-key"
 
 curl.exe http://localhost:8000/tasks -H "x-api-key: dev-secret-key" | jq
@@ -20,8 +21,41 @@ curl.exe http://localhost:8000/tasks/7 -H "x-api-key: dev-secret-key"
 
 curl.exe http://localhost:8000/tasks/7 -H "x-api-key: dev-secret-key" | jq
 
+# Post
+$body = @{
+  title       = "Mongo DB"
+  description = "FastAPI demo"
+  completed   = $false
+} | ConvertTo-Json
 
-# To Run Node React SSR Client
+Invoke-RestMethod -Method POST `
+  -Uri "http://localhost:8000/tasks" `
+  -Headers @{ "x-api-key" = "dev-secret-key" } `
+  -ContentType "application/json" `
+  -Body $body
+
+# PATCH
+
+PATCH
+-------------
+
+$body = @{
+  title       = "Migrate Data"
+  description = "FastAPI Python"
+  completed   = $true
+} | ConvertTo-Json
+
+Invoke-RestMethod -Method PATCH `
+  -Uri "http://localhost:8000/tasks/7" `
+  -Headers @{ "x-api-key" = "dev-secret-key" } `
+  -ContentType "application/json" `
+  -Body $body
+  
+# DELETE
+
+curl.exe -X DELETE http://localhost:8000/tasks/7 -H "x-api-key: dev-secret-key"
+
+# To Run UI Node React SSR Client
 
 cd Client-NodeReactSSR
 
@@ -33,8 +67,8 @@ $env:NODE_ENV="production"
 
 node server.js
 
-
 #  Open Browser http://localhost:5173
+
 
 
 
