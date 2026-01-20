@@ -3,13 +3,14 @@
 
 git clone https://github.com/sivakumar-chowdappan/python-react-fullstack.git
 
-# To Run Python Server
-
-
 cd Server-Python
 
-# "C:/Program Files/Python314/python.exe" -m uvicorn main:app --reload --port 8000
+pip install -r requirements.txt
 
+# To Run Python Server
+
+ "C:/Program Files/Python314/python.exe" -m uvicorn main:app --reload --port 8000
+or
 python  -m uvicorn main:app --reload --port 8000
 
 # GET 
@@ -68,6 +69,7 @@ $env:NODE_ENV="production"
 node server.js
 
 #  Open Browser http://localhost:5173
+
 
 
 
